@@ -1,20 +1,74 @@
-import { useState } from "react";
+// @ts-nocheck
+import { useEffect, useRef, useState } from "react";
+import "./index.css";
 
 function App() {
-  const [count, setCount] = useState(0);
+  const AICaptchaRefTop = useRef(null);
+  const [visb, setVisb] = useState(false);
+
+  useEffect(() => {
+    console.log("xxxx");
+    const script = document.createElement("script");
+
+    script.src =
+      "https://www.zsy96115.top/captcha-sdk-js/build/captcha/captcha.js"; // 替换为你需要的 CDN 链接
+    script.async = true;
+
+    script.onload = () => {
+      AICaptchaRefTop.current = new Captca({
+        onSuccess: () => {},
+        onClose: () => {},
+        key: "self-position-default-show", // 必传
+        // isNohide: false,
+        //   isShowClose: false,
+        domId: "self-position-default-show", // 自定义挂载元素，webView嵌入时传入无效
+        confirmPosition: "bottom",
+        language: "zh-CN",
+        activeKeyObject: {
+          accessKey: "accessKey",
+          secretKey: "secretKey",
+        },
+        style: {
+          // backgroundColor: "transparent",
+          width: "100vw",
+          maxWidth: "400px",
+          height: "350px",
+          // color: "#000",
+          top: "0px",
+          borderRadius: "5px",
+          position: "absolute",
+          left: "50%",
+          transform: "translateX(-50%)",
+          right: "20px",
+        },
+      });
+    };
+
+    document.head.appendChild(script);
+
+    return () => {
+      // AICaptchaRefTop.current.vecaiCaptca.destroy();
+      // document.head.removeChild(script);
+      // AICaptchaRefTop.current = null;
+    };
+  }, []);
 
   return (
-    <main className="flex flex-col items-center gap-8 py-16 max-w-[1280px] mx-auto">
-      <h1 className="text-4xl font-bold">Hello React & Tailwind!</h1>
-      <div className="flex flex-row items-center gap-6">
+    <div>
+      {!visb ? (
         <button
-          className="bg-sky-300 px-3 py-2 rounded hover:bg-sky-400"
-          onClick={() => setCount(count + 1)}
+          onClick={() => {
+            AICaptchaRefTop.current.vecaiCaptca.show();
+            setVisb(true);
+          }}
         >
-          Count: {count}
+          Click Me
         </button>
-      </div>
-    </main>
+      ) : (
+        ""
+      )}
+      <div id="self-position-default-show"></div>
+    </div>
   );
 }
 
