@@ -16,30 +16,36 @@ function App() {
 
     script.onload = () => {
       AICaptchaRefTop.current = new Captca({
-        onSuccess: () => {},
-        onClose: () => {},
+        onSuccess: () => {
+          setVisb(false);
+        },
+        onClose: () => {
+          setVisb(false);
+        },
         key: "self-position-default-show", // 必传
-        // isNohide: false,
+        isNohide: false,
         //   isShowClose: false,
         domId: "self-position-default-show", // 自定义挂载元素，webView嵌入时传入无效
-        confirmPosition: "bottom",
+        confirmPosition: "right",
         language: "zh-CN",
         activeKeyObject: {
           accessKey: "accessKey",
           secretKey: "secretKey",
         },
+        position: "center", //纵向位置: top、 center、 bottom  默认top
+        domId: "self-position-default-show", // 自定义挂载元素，webView嵌入时传入无效
         style: {
-          // backgroundColor: "transparent",
-          width: "100vw",
+          backgroundColor: "rgba(153, 153, 153,.5)",
+          width: "calc(100vw - 20px)",
           maxWidth: "400px",
-          height: "350px",
-          // color: "#000",
-          top: "0px",
+          height: "calc(30vh)",
+          maxHeight: "400px",
+          color: "#000",
+          // top: '10px',
           borderRadius: "5px",
-          position: "absolute",
-          left: "50%",
-          transform: "translateX(-50%)",
-          right: "20px",
+          // position:'absolute',
+          // left: '50%',
+          // transform: 'translateX(-50%)',
         },
       });
     };
