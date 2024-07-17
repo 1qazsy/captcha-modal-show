@@ -7,7 +7,6 @@ function App() {
   const [visb, setVisb] = useState(false);
 
   useEffect(() => {
-    console.log("xxxx");
     const script = document.createElement("script");
 
     script.src =
