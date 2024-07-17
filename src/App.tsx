@@ -37,9 +37,9 @@ function App() {
         style: {
           backgroundColor: "rgba(153, 153, 153,.5)",
           width: "calc(100vw - 20px)",
-          maxWidth: "400px",
+          maxWidth: "350px",
           height: "calc(30vh)",
-          maxHeight: "400px",
+          maxHeight: "300px",
           color: "#000",
           // top: '10px',
           borderRadius: "5px",
