@@ -11,7 +11,7 @@ function App() {
     const script = document.createElement("script");
 
     script.src =
-      "https://www.zsy96115.top/captcha-sdk-js/build/captcha/captcha.js"; // 替换为你需要的 CDN 链接
+      "https://www.zsy96115.top/captcha-sdk-js/build/captcha/captcha.js"; // 加载 CDN 链接
     script.async = true;
 
     script.onload = () => {
@@ -53,9 +53,9 @@ function App() {
     document.head.appendChild(script);
 
     return () => {
-      // AICaptchaRefTop.current.vecaiCaptca.destroy();
-      // document.head.removeChild(script);
-      // AICaptchaRefTop.current = null;
+      AICaptchaRefTop.current.vecaiCaptca.destroy();
+      document.head.removeChild(script);
+      AICaptchaRefTop.current = null;
     };
   }, []);
 
